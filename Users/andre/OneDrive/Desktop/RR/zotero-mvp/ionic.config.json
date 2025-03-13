@@ -1,0 +1,7 @@
+{
+  "name": "zotero-mvp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
