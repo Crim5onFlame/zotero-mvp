@@ -1,14 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ZoteroService } from '../services/zotero.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent {
+  apiKey: string = '';
 
-  constructor() { }
+  constructor(private router: Router, private zoteroService: ZoteroService) {}
 
-  ngOnInit() {}
+  // Метод для сохранения API-ключа и перехода в библиотеку
+  login() {
+    if (this.apiKey.trim()) {
+      localStorage.setItem('zoteroApiKey', this.apiKey); // Сохранение ключа в локальное хранилище
+      this.zoteroService.setApiKey(this.apiKey); // Устанавливаем ключ в сервисе
+      this.router.navigate(['/library']); // Перенаправление в библиотеку
+    } else {
+      return;
+    }
 
+    // Сохраняем API-ключ в localStorage
+    localStorage.setItem('zoteroApiKey', this.apiKey);
+
+    // Перенаправляем пользователя в библиотеку
+    this.router.navigate(['/library']);
+  }
 }
