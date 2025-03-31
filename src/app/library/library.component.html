@@ -1,3 +1,14 @@
-<p>
-  library works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Library</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-label>{{ item.data.title }}</ion-label>
+      <ion-button color="danger" (click)="deleteItem(item.key)">Delete</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
